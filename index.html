@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <!-- 設定網頁編碼，確保繁體中文正常顯示 -->
+  <meta charset="UTF-8">
+
+  <!-- 設定響應式視窗，支援手機、平板與電腦 -->
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <!-- 設定網頁標題 -->
+  <title>高中歷史測驗</title>
+
+  <!-- 預先連線至 Google Fonts -->
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <!-- 預先連線至 Google Fonts 字型伺服器 -->
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <!-- 載入 Noto Sans TC 繁體中文字型 -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- 載入 p5.js 主程式庫 -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/p5@1.11.1/lib/p5.min.js"
+  ></script>
+
+  <!-- 設定網頁樣式 -->
+  <style>
+    /* 讓所有元素採用更容易控制的盒模型 */
+    * {
+      box-sizing: border-box;
+    }
+
+    /* 設定網頁根元素 */
+    html {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* 設定網頁主體 */
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #f4f4f4;
+      font-family: "Noto Sans TC", sans-serif;
+    }
+
+    /* 避免 p5.js 畫布下方出現空白 */
+    canvas {
+      display: block;
+    }
+
+    /* 統一設定 p5.js 按鈕字型 */
+    button {
+      font-family: "Noto Sans TC", sans-serif;
+      touch-action: manipulation;
+      user-select: none;
+    }
+
+    /* 設定載入失敗提示區塊 */
+    #pageError {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 50%;
+      left: 50%;
+      width: min(90vw, 600px);
+      padding: 24px;
+      transform: translate(-50%, -50%);
+      border-radius: 12px;
+      background: #fff0f0;
+      color: #a40000;
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 18px;
+      line-height: 1.8;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 顯示 HTML 或 p5.js 載入錯誤的提示區塊 -->
+  <div id="pageError"></div>
+
+  <!-- 檢查 p5.js 是否成功載入 -->
+  <script>
+    // 判斷 p5 是否存在。
+    if (typeof p5 === "undefined") {
+      // 取得錯誤提示區塊。
+      const errorBox = document.getElementById("pageError");
+
+      // 設定錯誤提示文字。
+      errorBox.innerHTML =
+        "p5.js 載入失敗。<br>" +
+        "請檢查網路連線，或確認 CDN 沒有被瀏覽器阻擋。";
+
+      // 顯示錯誤提示區塊。
+      errorBox.style.display = "block";
+    }
+  </script>
+
+  <!-- 載入你的 p5.js 程式 -->
+  <script
+    src="sketch.js"
+    onerror="showSketchError()"
+  ></script>
+
+  <!-- 顯示 sketch.js 載入錯誤 -->
+  <script>
+    // 當 sketch.js 載入失敗時執行。
+    function showSketchError() {
+      // 取得錯誤提示區塊。
+      const errorBox = document.getElementById("pageError");
+
+      // 設定錯誤提示文字。
+      errorBox.innerHTML =
+        "sketch.js 載入失敗。<br>" +
+        "請確認 sketch.js 與 index.html 位於同一個資料夾。";
+
+      // 顯示錯誤提示區塊。
+      errorBox.style.display = "block";
+    }
+  </script>
+</body>
+</html>
